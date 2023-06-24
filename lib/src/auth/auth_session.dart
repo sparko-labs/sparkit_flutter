@@ -39,12 +39,18 @@ final class AuthSession<T, U> extends ChangeNotifier {
     await _storage.saveUser(user);
     await _storage.saveToken(token);
 
+    _user = user;
+    _token = token;
+
     notifyListeners();
   }
 
   Future<void> signOut() async {
     await _storage.clearUser();
     await _storage.clearToken();
+
+    _user = null;
+    _token = null;
 
     notifyListeners();
   }
