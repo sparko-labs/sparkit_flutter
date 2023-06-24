@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
+
 abstract class AuthSessionStorage<T, U> {
   FutureOr<void> clearUser();
 
@@ -14,7 +16,7 @@ abstract class AuthSessionStorage<T, U> {
   FutureOr<void> saveToken(U token);
 }
 
-final class AuthSession<T, U> {
+final class AuthSession<T, U> extends ChangeNotifier {
   AuthSession({required AuthSessionStorage<T, U> storage}) : _storage = storage;
 
   final AuthSessionStorage<T, U> _storage;
@@ -36,10 +38,14 @@ final class AuthSession<T, U> {
   Future<void> signIn(T user, U token) async {
     await _storage.saveUser(user);
     await _storage.saveToken(token);
+
+    notifyListeners();
   }
 
   Future<void> signOut() async {
     await _storage.clearUser();
     await _storage.clearToken();
+
+    notifyListeners();
   }
 }
