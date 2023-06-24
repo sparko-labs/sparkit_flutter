@@ -5,9 +5,9 @@ abstract class AuthSessionStorage<T, U> {
 
   FutureOr<void> clearToken();
 
-  FutureOr<T> readUser();
+  FutureOr<T?> readUser();
 
-  FutureOr<U> readToken();
+  FutureOr<U?> readToken();
 
   FutureOr<void> saveUser(T user);
 
