@@ -65,6 +65,8 @@ mixin ControlledStateMixin<T extends ChangeNotifier,
 
   T? _controller;
 
+  T get controller => _controller!;
+
   bool _selfCreatedController = false;
 
   void _bindController(T? newController) {
