@@ -16,7 +16,7 @@ abstract class ControlledWidget<T extends ChangeNotifier>
   /// null, a new instance is created by invoking the [ControlledStateMixin.makeController].
   final T? controller;
 
-  const ControlledWidget({Key? key, this.controller}) : super(key: key);
+  const ControlledWidget({super.key, this.controller});
 }
 
 /// [ControlledStateMixin] is a mixin that manages the lifecycle of a [ChangeNotifier]
