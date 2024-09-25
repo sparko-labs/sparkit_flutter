@@ -100,11 +100,12 @@ abstract final class InputValidators {
   /// Returns a validator that checks if the input string is not empty.
   ///
   /// If the input string is empty, it returns the given [message].
-  static FormFieldValidator<String> required({
+  static FormFieldValidator<T> required<T>({
     String message = 'This field is required',
   }) {
-    return (String? value) {
-      if (value == null || value.isEmpty) return message;
+    return (T? value) {
+      if (value == null) return message;
+      if (value is String && value.isEmpty) return message;
       return null;
     };
   }
